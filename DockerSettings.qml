@@ -64,4 +64,11 @@ PluginSettings {
         description: "Display container port mappings when expanding containers in the widget."
         defaultValue: true
     }
+
+    ToggleSetting {
+        settingKey: "autoScrollOnExpand"
+        label: "Auto-scroll on Expand"
+        description: "Automatically scroll to show expanded content when expanding containers or projects (smoothly follows the expansion animation)."
+        defaultValue: true
+    }
 }

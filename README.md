@@ -58,6 +58,7 @@ Settings available in plugin settings:
 - **Terminal Application**: Command for terminal windows (default: `alacritty --hold`)
 - **Shell Path**: Shell for container exec (default: `/bin/sh`)
 - **Show Port Mappings**: Toggle display of container port mappings when expanding containers (default: `true`)
+- **Auto-scroll on Expand**: Automatically scroll to show expanded content when expanding containers or projects. The scroll smoothly follows the expansion animation to keep the action buttons visible. (default: `true`)
 
 ## Usage
 
@@ -73,3 +74,24 @@ Click widget to open container list. Expand containers to access actions:
 - View logs
 
 If you have a Docker Compose project, you can select in the widget to manage the Compose projects instead, using the selector on the top-right.
+
+### Keyboard Navigation
+
+The Docker Manager supports keyboard navigation when the popout is open:
+
+**Basic Navigation:**
+- `Up/Down` or `Ctrl+K/J` or `Ctrl+P/N` or `Tab/Shift+Tab` - Navigate between items
+  - In **Container View**: Navigate through all containers
+  - In **Compose View**: Navigate through projects and their nested containers hierarchically
+- `Enter` or `Space` - Expand/collapse the selected container/project, or execute the selected action when in action menu
+- `Left Arrow` or `Ctrl+H` - Collapse the selected container/project when in main list
+
+**Action Menu Navigation:**
+- `Right Arrow` or `Ctrl+L` - Enter action menu for the currently selected container/project (expands first if collapsed)
+- `Up/Down` - Navigate between action buttons when inside action menu
+- `Left Arrow` or `Ctrl+H` - Exit action menu and return to main list
+- `Enter` or `Space` - Execute the currently selected action
+
+**View Mode:**
+- `V` - Toggle between Container view and Compose Project view
+
