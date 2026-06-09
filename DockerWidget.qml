@@ -368,7 +368,7 @@ PluginComponent {
 
     component DockerIcon: DankNFIcon {
         name: "docker"
-        size: Theme.barIconSize(root.barThickness, -4)
+        size: root.iconSize
         color: {
             if (!globalDockerAvailable.value)
                 return Theme.error;
@@ -380,7 +380,7 @@ PluginComponent {
 
     component DockerCount: StyledText {
         text: globalRunningContainers.value.toString()
-        font.pixelSize: Theme.fontSizeMedium
+        font.pixelSize: Theme.barTextSize(root.barThickness, root.barConfig?.fontScale)
         color: Theme.widgetTextColor || Theme.surfaceText
         visible: globalRunningContainers.value > 0
     }
