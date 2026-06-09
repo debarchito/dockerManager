@@ -13,7 +13,8 @@ Item {
             debounceDelay: 300,
             dockerBinary: "docker",
             terminalApp: "alacritty --hold",
-            shellPath: "/bin/sh"
+            shellPath: "/bin/sh",
+            pollingInterval: 0
         })
 
     readonly property string pluginId: "dockerManager"
@@ -24,6 +25,7 @@ Item {
     property string dockerBinary: defaults.dockerBinary
     property string terminalApp: defaults.terminalApp
     property string shellPath: defaults.shellPath
+    property int pollingInterval: defaults.pollingInterval
 
     function loadSettings() {
         const load = key => PluginService.loadPluginData(pluginId, key) || defaults[key];
@@ -31,6 +33,7 @@ Item {
         dockerBinary = load("dockerBinary");
         terminalApp = load("terminalApp");
         shellPath = load("shellPath");
+        pollingInterval = load("pollingInterval");
 
         refresh();
     }
@@ -103,6 +106,16 @@ Item {
                 console.log("DockerManager: Attempting to restart events listener...");
                 eventsProcess.running = true;
             }
+        }
+    }
+
+    property var pollingTimer: Timer {
+        interval: root.pollingInterval
+        running: root.dockerAvailable && root.pollingInterval > 0
+        repeat: true
+        onTriggered: {
+            console.log("DockerManager: Polling for container state updates");
+            fetchContainers();
         }
     }
 
