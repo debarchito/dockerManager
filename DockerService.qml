@@ -14,7 +14,7 @@ Item {
             dockerBinary: "docker",
             terminalApp: "alacritty --hold",
             shellPath: "/bin/sh",
-            pollingInterval: 30000
+            pollingInterval: 0
         })
 
     readonly property string pluginId: "dockerManager"

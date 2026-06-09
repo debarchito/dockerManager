@@ -49,7 +49,6 @@ PluginSettings {
         defaultValue: DockerService.defaults.pollingInterval
         minimum: 0
         maximum: 120000
-        step: 5000
         unit: "ms"
         leftIcon: "sync"
     }
