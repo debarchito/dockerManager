@@ -841,10 +841,14 @@ PluginComponent {
             implicitHeight: popoutColumn.implicitHeight
             focus: true
 
-            Component.onCompleted: {
-                Qt.callLater(() => {
-                    forceActiveFocus();
-                });
+            property var parentPopout: null
+            Connections {
+                target: parentPopout
+                function onOpened() {
+                    Qt.callLater(() => {
+                        forceActiveFocus();
+                    });
+                }
             }
 
             Keys.onPressed: event => {
